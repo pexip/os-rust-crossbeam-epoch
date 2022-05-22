@@ -1,0 +1,87 @@
+Source: rust-crossbeam-epoch
+Section: rust
+Priority: optional
+Build-Depends: debhelper (>= 12),
+ dh-cargo (>= 25),
+ cargo:native <!nocheck>,
+ rustc:native <!nocheck>,
+ libstd-rust-dev <!nocheck>,
+ librust-autocfg-1+default-dev <!nocheck>,
+ librust-cfg-if-1+default-dev <!nocheck>,
+ librust-crossbeam-utils-0.8+std-dev (>= 0.8.5-~~) <!nocheck>,
+ librust-crossbeam-utils-0.8-dev (>= 0.8.5-~~) <!nocheck>,
+ librust-lazy-static-1+default-dev (>= 1.4.0-~~) <!nocheck>,
+ librust-memoffset-0.6+default-dev <!nocheck>,
+ librust-scopeguard-1-dev (>= 1.1.0-~~) <!nocheck>
+Maintainer: Debian Rust Maintainers <pkg-rust-maintainers@alioth-lists.debian.net>
+Uploaders:
+ Wolfgang Silbermayr <wolfgang@silbermayr.at>
+Standards-Version: 4.5.1
+Vcs-Git: https://salsa.debian.org/rust-team/debcargo-conf.git [src/crossbeam-epoch]
+Vcs-Browser: https://salsa.debian.org/rust-team/debcargo-conf/tree/master/src/crossbeam-epoch
+Homepage: https://github.com/crossbeam-rs/crossbeam/tree/master/crossbeam-epoch
+Rules-Requires-Root: no
+
+Package: librust-crossbeam-epoch-dev
+Architecture: any
+Multi-Arch: same
+Depends:
+ ${misc:Depends},
+ librust-autocfg-1+default-dev,
+ librust-cfg-if-1+default-dev,
+ librust-crossbeam-utils-0.8-dev (>= 0.8.5-~~),
+ librust-memoffset-0.6+default-dev,
+ librust-scopeguard-1-dev (>= 1.1.0-~~)
+Recommends:
+ librust-crossbeam-epoch+std-dev (= ${binary:Version})
+Suggests:
+ librust-crossbeam-epoch+lazy-static-dev (= ${binary:Version})
+Provides:
+ librust-crossbeam-epoch+alloc-dev (= ${binary:Version}),
+ librust-crossbeam-epoch-0-dev (= ${binary:Version}),
+ librust-crossbeam-epoch-0+alloc-dev (= ${binary:Version}),
+ librust-crossbeam-epoch-0.9-dev (= ${binary:Version}),
+ librust-crossbeam-epoch-0.9+alloc-dev (= ${binary:Version}),
+ librust-crossbeam-epoch-0.9.8-dev (= ${binary:Version}),
+ librust-crossbeam-epoch-0.9.8+alloc-dev (= ${binary:Version})
+Description: Epoch-based garbage collection - Rust source code
+ This package contains the source for the Rust crossbeam-epoch crate, packaged
+ by debcargo for use with cargo and dh-cargo.
+
+Package: librust-crossbeam-epoch+lazy-static-dev
+Architecture: any
+Multi-Arch: same
+Depends:
+ ${misc:Depends},
+ librust-crossbeam-epoch-dev (= ${binary:Version}),
+ librust-lazy-static-1+default-dev (>= 1.4.0-~~)
+Provides:
+ librust-crossbeam-epoch-0+lazy-static-dev (= ${binary:Version}),
+ librust-crossbeam-epoch-0.9+lazy-static-dev (= ${binary:Version}),
+ librust-crossbeam-epoch-0.9.8+lazy-static-dev (= ${binary:Version})
+Description: Epoch-based garbage collection - feature "lazy_static"
+ This metapackage enables feature "lazy_static" for the Rust crossbeam-epoch
+ crate, by pulling in any additional dependencies needed by that feature.
+
+Package: librust-crossbeam-epoch+std-dev
+Architecture: any
+Multi-Arch: same
+Depends:
+ ${misc:Depends},
+ librust-crossbeam-epoch-dev (= ${binary:Version}),
+ librust-crossbeam-epoch+alloc-dev (= ${binary:Version}),
+ librust-crossbeam-epoch+lazy-static-dev (= ${binary:Version}),
+ librust-crossbeam-utils-0.8+std-dev (>= 0.8.5-~~)
+Provides:
+ librust-crossbeam-epoch+default-dev (= ${binary:Version}),
+ librust-crossbeam-epoch-0+std-dev (= ${binary:Version}),
+ librust-crossbeam-epoch-0+default-dev (= ${binary:Version}),
+ librust-crossbeam-epoch-0.9+std-dev (= ${binary:Version}),
+ librust-crossbeam-epoch-0.9+default-dev (= ${binary:Version}),
+ librust-crossbeam-epoch-0.9.8+std-dev (= ${binary:Version}),
+ librust-crossbeam-epoch-0.9.8+default-dev (= ${binary:Version})
+Description: Epoch-based garbage collection - feature "std" and 1 more
+ This metapackage enables feature "std" for the Rust crossbeam-epoch crate, by
+ pulling in any additional dependencies needed by that feature.
+ .
+ Additionally, this package also provides the "default" feature.
